@@ -168,8 +168,8 @@ BO_ 815 ACC_AEB: 8 XXX
  SG_ CheckSum : 56|8@1+ (1,0) [0|255] "" XXX
 
 BO_ 834 PEDAL: 8 XXX
- SG_ AcceleratorPedal : 0|8@1+ (0.01,0) [0|2.55] "" XXX
- SG_ BrakePedal : 8|8@1+ (0.01,0) [0|2.55] "" XXX
+ SG_ AcceleratorPedal : 0|8@1+ (1,0) [0|255] "" XXX
+ SG_ BrakePedal : 8|8@1+ (1,0) [0|255] "" XXX
  SG_ ForceGeneratorMode : 19|1@1+ (1,0) [0|1] "" XXX
  SG_ DriveMode : 20|2@1+ (1,0) [0|255] "" XXX
  SG_ PowerMode : 28|2@1+ (1,0) [0|1] "" XXX
