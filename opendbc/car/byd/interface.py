@@ -20,6 +20,9 @@ NON_LINEAR_TORQUE_PARAMS = {
   CAR.BYD_HAN_EV_20: [1.807, 1.674, 0.04]
 }
 
+import os
+BYD_RADAR = os.getenv("BYD_RADAR") is not None
+
 class CarInterface(CarInterfaceBase):
     CarState = CarState
     CarController = CarController
@@ -59,7 +62,10 @@ class CarInterface(CarInterfaceBase):
 
         ret.dashcamOnly = False
         #disable simple pt radar due to mpc solver issue in official OP. It works with carrot/sunny/forg.
-        ret.radarUnavailable = True #candidate not in PT_RADAR_CAR
+        if BYD_RADAR:
+            ret.radarUnavailable = False
+        else:
+            ret.radarUnavailable = True #candidate not in PT_RADAR_CAR
 
 
         ret.minEnableSpeed = -1.
@@ -106,7 +112,7 @@ class CarInterface(CarInterfaceBase):
 
         # model specific parameters
         # Todo: Developers please fill or add more models.
-        if candidate in (CAR.BYD_HAN_DM_20, CAR.BYD_HAN_EV_20, CAR.BYD_TANG_DM):
+        if candidate in (CAR.BYD_HAN_DM_20, CAR.BYD_HAN_EV_20, CAR.BYD_TANG_DM, CAR.BYD_SONG_PLUS_DMI_21):
             ret.minSteerSpeed = 0
             ret.autoResumeSng = True
             ret.startingState = True
