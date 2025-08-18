@@ -7,8 +7,7 @@ import numpy as np
 #from openpilot.common.time_helpers import system_time_valid
 #from openpilot.common.swaglog import cloudlog
 
-from opendbc.can.can_define import CANDefine
-from opendbc.can.parser import CANParser
+from opendbc.can import CANDefine, CANParser
 
 from opendbc.car.common.conversions import Conversions as CV
 #from opendbc.car.common.numpy_fast import mean
@@ -163,8 +162,7 @@ class CarState(CarStateBase):
         ret.doorOpen = any([cp.vl["BCM"]["FrontLeftDoor"], cp.vl["BCM"]["FrontRightDoor"],
                             cp.vl["BCM"]["RearLeftDoor"],  cp.vl["BCM"]["RearRightDoor"]])
 
-        ret.gas = int(cp.vl["PEDAL"]["AcceleratorPedal"])
-        ret.gasPressed = (ret.gas > 0)
+        ret.gasPressed = (int(cp.vl["PEDAL"]["AcceleratorPedal"]) > 0)
 
         ret.cruiseState.available = lkas_isMainSwOn and lkas_config_isAccOn and lkas_hud_AccOn1
         ret.cruiseState.enabled = self.acc_state in (3, 5)
